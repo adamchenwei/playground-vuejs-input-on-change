@@ -1,5 +1,17 @@
 <template>
-  <input name="somename" @input="onChange" />
+  <form action="http://localhost:8080" method="post" autocomplete="on">
+    <input required type="email" @input="onChange" @blur="onBlur" name="email" id="email" autocomplete="username email" />
+    <input required type="password" @input="onChange" @blur="onBlur" name="password" id="password" autocomplete="password new-password"/>
+    <button type="submit">Submit</button>
+  </form>
+  <!-- <form action="http://localhost:8080" method="post" target="registerframe">
+    <label>Username :</label>
+    <input type="text" name="username" id="username" />
+    <label>Password :</label>
+    <input type="password" name="password" id="password"/>
+    <br/>
+    <button type="submit" id="register" name="register">register!</button>
+  </form> -->
 </template>
 
 <script>
@@ -9,6 +21,15 @@ export default {
     msg: String
   },
   methods: {
+    onSubmit(event) {
+      event.preventDefault();
+      console.log('onsubmit');
+      console.log(event);
+      window.location.href = 'http://localhost:8081/?abc=loggedin'
+    },
+    onBlur(event) {
+      console.log(event);
+    },
     onChange(event) {
       console.log(event);
     }
